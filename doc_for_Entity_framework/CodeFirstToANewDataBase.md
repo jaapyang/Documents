@@ -164,11 +164,11 @@ Press any key to exit...
 
 其实，DbContext帮你默认创建了一个数据库.
 
-	- 在你安装VS2010及以上版本的时候，就会默认安装一个 Local Sql Express的数据库实例(它的连接方式：```.\sqlexpress```)，默认情况下(没有指定DbConnectionString的情况下)Code First就是将数据库创建在这里(你可以在配置文件中指定ConnectionString,来控制Code First将数据库创建在哪里)
-	
-	- 当默认的 SQL Express 不能用或访问不到时，Code First就会尝试使用另一个实例```LocalDb```(它默认会在安装VS2012及以上版本时安装)
-	
-	- 在默认情况下，Code First会按照你定义的DbContext的完整限定名来创建数据库，如 **CodeFirstNewDatabaseSample.BloggingContext**
+- 在你安装VS2010及以上版本的时候，就会默认安装一个 Local Sql Express的数据库实例(它的连接方式：```.\sqlexpress```)，默认情况下(没有指定DbConnectionString的情况下)Code First就是将数据库创建在这里(你可以在配置文件中指定ConnectionString,来控制Code First将数据库创建在哪里)
+
+- 当默认的 SQL Express 不能用或访问不到时，Code First就会尝试使用另一个实例```LocalDb```(它默认会在安装VS2012及以上版本时安装)
+
+- 在默认情况下，Code First会按照你定义的DbContext的完整限定名来创建数据库，如 **CodeFirstNewDatabaseSample.BloggingContext**
 
 有关更详细情况你可以查看这篇文章 [**How DbContext Discovers the Model and Database Connection**](https://msdn.microsoft.com/en-us/library/jj592674(v=vs.113).aspx)
 
