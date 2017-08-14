@@ -165,7 +165,9 @@ public partial class Blog
 
 ## 4.读写数据
 
-Now that we have a model it’s time to use it to access some data. Implement the **Main** method in **Program.cs** as shown below. This code creates a new instance of our context and then uses it to insert a new **Blog**. Then it uses a LINQ query to retrieve all **Blogs** from the database ordered alphabetically by **Title**.
+现在，数据模型的逆向工程完成了，是时候与数据库交互进行一些数据访问了。在**Main**函数中实现如下代码:
+
+> 这段代码的意思是创建一个新的 DbContext的对象实例，再用它去插入一个新的Blog对象到数据库.再用Linq to Sql 从数据库中查询所有的Blogs，并按 Name 属性排序。 在此过程中你完全感觉不到你在操作数据库，是的，你就是在操作面向对象语言，EF帮你实现了与数据库的所有交互
 
 ```
 class Program 
@@ -200,7 +202,7 @@ class Program
 }
 ```
 
-You can now run the application and test it out.
+现在请运行这个程序，并查看运行结果，结果如下：
 
 ```
 Enter a name for a new Blog: ADO.NET Blog
