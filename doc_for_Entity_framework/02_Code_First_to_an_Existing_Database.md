@@ -1,22 +1,19 @@
-# Entity Framework Code First to an Existing Database
+# EF对于已有数据库的Code First支持
 
 > [原文链接](https://msdn.microsoft.com/en-us/library/jj200620(v=vs.113).aspx)
 
-> This video and step-by-step walkthrough provide an introduction to Code First development targeting an existing database. Code First allows you to define your model using C# or VB.Net classes. Optionally additional configuration can be performed using attributes on your classes and properties or by using a fluent API.
+> 本文将逐步介绍怎样用Code First的方式基于已有数据库进行开发。Code First支持你使用C#或者VB.Net定义类.并使用数据模型标识和Fluent API定义与配置模型。
 
-**目录**
-> [Pre-Requisites](#Pre-Requisites)
-> [1-Create-an-Existing-Database](#1-Create-an-Existing-Database)
+## 前提
 
-## Pre-Requisites
+已经安装  **Visual Studio 2012** 或者 **Visual Studio 2013**
 
-You will need to have **Visual Studio 2012** or **Visual Studio 2013** installed to complete this walkthrough.
+同时，你还需要安装**Entity Framework Tools for Visual Studio**的**6.1**或更高版本。请参考[Get Entity Framework](https://msdn.microsoft.com/en-us/library/ee712906(v=vs.113).aspx)
 
-You will also need version **6.1** (or later) of the **Entity Framework Tools for Visual Studio** installed. See [Get Entity Framework](https://msdn.microsoft.com/en-us/library/ee712906(v=vs.113).aspx) for information on installing the latest version of the Entity Framework Tools.
 
-## 1. Create an Existing Database
+## 1. 创建一个数据库
 
-Typically when you are targeting an existing database it will already be created, but for this walkthrough we need to create a database to access.
+因为本文是研究基于已有数据库进行Code First,所以，我们先创建一个数据库作为我们的操作目标。(至于创建数据库的过程，可以去 [*原文链接*](https://msdn.microsoft.com/en-us/library/jj200620(v=vs.113).aspx) 看图操作，这部分内容我就不翻译了)
 
 Let's go ahead and generate the database.
 
@@ -40,7 +37,7 @@ Let's go ahead and generate the database.
 
 - The new database will now appear in Server Explorer, right-click on it and select New Query
 
-- Copy the following SQL into the new query, then right-click on the query and select Execute
+- 复制以下代码，到**数据库管理器**中执行，以生成新的数据表
 
 ```
 CREATE TABLE [dbo].[Blogs] ( 
@@ -66,23 +63,23 @@ INSERT INTO [dbo].[Blogs] ([Name],[Url])
 VALUES ('.NET Framework Blog', 'http://blogs.msdn.com/dotnet/')
 ```
 
-## 2.Create the Application
+## 2.创建应用程序
 
-To keep things simple we’re going to build a basic console application that uses Code First to perform data access:
+依然基于简单原则，我们还是创建一个控制台应用程序，并用Code First进行数据库操作：
 
-- Open Visual Studio
-- **File -> New -> Project…**
-- Select **Windows** from the left menu and **Console Application**
-- Enter **CodeFirstExistingDatabaseSample** as the name
-- Select **OK**
+- 打开 Visual Studio
+- **文件 -> 新建 -> 项目…**
+- 选择**控制台应用程序**
+- 输入 **CodeFirstExistingDatabaseSample** 作为项目名
+- 点击**确定**
 
-## 3.Reverse Engineer Model
+## 3.逆向工程
 
-We’re going to make use of the Entity Framework Tools for Visual Studio to help us generate some initial code to map to the database. These tools are just generating code that you could also type by hand if you prefer.
+我们将使用Entity framework Tools for Visual Studio来生成一些基于数据库的初始化代码。当然，你也可以手动创建这些代码。
 
-- **Project -> Add New Item…**
+- **项目 -> 添加新项…**
 
-- Select **Data** from the left menu and then **ADO.NET Entity Data Model**
+- 从左侧菜单的**数据**(**Data**)分类中选择**Ado.net 实体模型**(**Ado.net Entity Data Model**)(*目前我的电脑上没装中文版，在菜单中具体显示的选项是什么 可能会不太精确，这里我只能是把大概意思译一下，请见谅，谢谢。*)
 
 - Enter **BloggingContext** as the name and click **OK**
 
