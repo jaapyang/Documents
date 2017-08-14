@@ -172,30 +172,19 @@ Press any key to exit...
 
 有关更详细情况你可以查看这篇文章 [**How DbContext Discovers the Model and Database Connection**](https://msdn.microsoft.com/en-us/library/jj592674(v=vs.113).aspx)
 
-## 5. Dealing with Model Changes
-
-Now it’s time to make some changes to our model, when we make these changes we also need to update the database schema. To do this we are going to use a feature called Code First Migrations, or Migrations for short.
-
-Migrations allows us to have an ordered set of steps that describe how to upgrade (and downgrade) our database schema. Each of these steps, known as a migration, contains some code that describes the changes to be applied.
-
-The first step is to enable Code First Migrations for our BloggingContext.
-
-	- Tools -- Library Package Manager -- Package Manager Console
-	- Run the Enable-Migrations command in Package Manager Console
-	- A new Migrations folder has been added to our project that contains two items:
-		- Configuration.cs – This file contains the settings that Migrations will use for migrating BloggingContext. We don’t need to change anything for this walkthrough, but here is where you can specify seed data, register providers for other databases, changes the namespace that migrations are generated in etc.
-		- <timestamp-_InitialCreate.cs – This is your first migration, it represents the changes that have already been applied to the database to take it from being an empty database to one that includes the Blogs and Posts tables. Although we let Code First automatically create these tables for us, now that we have opted in to Migrations they have been converted into a Migration. Code First has also recorded in our local database that this Migration has already been applied. The timestamp on the filename is used for ordering purposes.
-	
-	  Now let’s make a change to our model, add a Url property to the Blog class:
-
+# 5.处理数据变更
+现在是时候对我们的模型进行一些更改，当我们进行这些更改时，我们还需要同步更新数据库结构。为此，我们将使用一个名为Code First Migrations的功能，或简称为**Migrations**。
+首先，为我们定义的BloggingContext启用Code First Migrations.
+- **工具** -> **NuGet管理器** -> **程序包控制台**
+- 选择你定义的DbContext(BloggingContext)所在的项目/工程(Project)为默认项目
+- 输入命令: ```Enable-Migrations```- **程序包控制台**会在DbContext所在项目自动为我们生成一个名为**Migrations**的文件夹，并自动生成了两个文件:
+    - **Configuration.cs** : 这个文件定义了Migrations将用于迁移BloggingContext的设置。 一般情况下我们不需要为此做任何更改，但是您可以在此指定种子数据(数据库初始化数据).
+    - **<时间字符串>_InitialCreate.cs** : 这里定义的是已经应用了到目前为止的数据库变更的第一次Migration,它将会在一个空的数据库中创建"Blogs"和Posts两个数据表。在这个Migration中，Code First将代码转换成了从对象模型到数据模型的迁移，并且，Code First还在数据库中记录了迁移版本，这些版本是以时间排序的。
+    
+现在我们往 **Blog** 类中添加一个 **Url** 属性:
 ```
-public class Blog 
-{ 
-	public int BlogId { get; set; } 
-	public string Name { get; set; } 
-	public string Url { get; set; } 
- 
-	public virtual List<Post- Posts { get; set; } 
+public class Blog {
+public int BlogId { get; set; }     public string Name { get; set; }     public string Url { get; set; }        public virtual List<Post> Posts { get; set; } 
 }
 ```
 
