@@ -1,5 +1,7 @@
 # Entity Framework Code First to an Existing Database
 
+> [原文链接](https://msdn.microsoft.com/en-us/library/jj200620(v=vs.113).aspx)
+
 > This video and step-by-step walkthrough provide an introduction to Code First development targeting an existing database. Code First allows you to define your model using C# or VB.Net classes. Optionally additional configuration can be performed using attributes on your classes and properties or by using a fluent API.
 
 ## Pre-Requisites
