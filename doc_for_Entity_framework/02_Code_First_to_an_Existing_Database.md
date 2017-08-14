@@ -81,27 +81,27 @@ VALUES ('.NET Framework Blog', 'http://blogs.msdn.com/dotnet/')
 
 - 从左侧菜单的**数据**(**Data**)分类中选择**Ado.net 实体模型**(**Ado.net Entity Data Model**)(*目前我的电脑上没装中文版，在菜单中具体显示的选项是什么 可能会不太精确，这里我只能是把大概意思译一下，请见谅，谢谢。*)
 
-- Enter **BloggingContext** as the name and click **OK**
+- 将新文件命名为 **BloggingContext** 并点击**确定**
 
-- This launches the **Entity Data Model Wizard**
+- 这时会启动**实体模型创建向导**
 
-- Select **Code First from Database** and click **Next**
+- 选择**从数据库创建模型**(Code First from DataBase) 并点击**下一步**
 
 ![](https://i-msdn.sec.s-msft.com/dynimg/IC716048.jpeg)
 
-- Select the connection to the database you created in the first section and click **Next**
+- 创建连接并点击**下一步**
 
 ![](https://i-msdn.sec.s-msft.com/dynimg/IC716050.jpeg)
 
-- Click the checkbox next to **Tables** to import all tables and click **Finish**
+- 选择要导入的数据表并点击**完成**
 
 ![](https://i-msdn.sec.s-msft.com/dynimg/IC716049.jpeg)
 
-Once the reverse engineer process completes a number of items will have been added to the project, let's take a look at what's been added.
+当逆向工程完成后，项目中会自动生成一些文件，现在让我们看看到底添加了一些什么内容吧。
 
-**Configuration file**
+**配置文件**
 
-An App.config file has been added to the project, this file contains the connection string to the existing database.
+在项目根目录下添加了一个```App.config```的文件，这个文件中包含了一个有关目标数据库的连接字符串.
 
 ```
 <connectionStrings> 
@@ -112,12 +112,12 @@ An App.config file has been added to the project, this file contains the connect
 </connectionStrings>
 ```
 
-You’ll notice some other settings in the configuration file too, these are default EF settings that tell Code First where to create databases. Since we are mapping to an existing database these setting will be ignored in our application.
+你还会注意到配置文件中的其他一些设置，这些是默认的EF设置，它告诉Code First在哪里创建数据库。 由于我们正在映射到现有数据库，因此我们的应用程序将忽略这些设置。
 
 
-**Derived Context**
+**衍生(派生)DbContext**
 
-A **BloggingContext** class has been added to the project. The context represents a session with the database, allowing us to query and save data. The context exposes a **DbSet\<TEntity\>** for each type in our model. You’ll also notice that the default constructor calls a base constructor using the **name=** syntax. This tells Code First that the connection string to use for this context should be loaded from the configuration file.
+在项目目录下添加了一个名为**BloggingContext**的文件。这是与数据交互的上下文，通过它我们可以从数据库中查询数据或保存数据到数据库。同时，**BloggingContext**为每一个表公开了一个**DbSet\<TEntity\>**属性。 您还会注意到，默认构造函数使用** name = syntax**语法调用基础构造函数。 这是告诉Code First，应该从配置文件基于连接字符串名称加载用于此上下文的连接字符串。
 
 ```
 public partial class BloggingContext : DbContext 
@@ -136,11 +136,12 @@ public partial class BloggingContext : DbContext
 }
 ```
 
-You should always use the **name=** syntax when you are using a connection string in the config file. This ensures that if the connection string is not present then Entity Framework will throw rather than creating a new database by convention.
+当您在配置文件中使用连接字符串时，应始终使用**name = syntax**。 这样可以确保如果连接字符串不存在，那么Entity Framework将抛出异常而不是按照惯例创建一个新的数据库。
 
-**Model classes**
+**实体模型类**
 
-Finally, a **Blog** and **Post** class have also been added to the project. These are the domain classes that make up our model. You'll see Data Annotations applied to the classes to specify configuration where the Code First conventions would not align with the structure of the existing database. For example, you'll see the **StringLength** annotation on **Blog.Name** and **Blog.Url** since they have a maximum length of **200** in the database (the Code First default is to use the maximun length supported by the database provider - **nvarchar(max)** in SQL Server).
+最后，一个**Blog**和**Post**类也被添加到项目中。 这些是构成我们模型的实体类。 你将看到应用于类的数据模型标识配置，其中**Code First**约定与现有数据库的结构不一致。 例如，你在**Blog.Name**和**Blog.Url**上看到**StringLength**特性，因为它们在数据库中的最大长度为**200**（Code First 默认是使用数据库提供程序支持的最大长度 - **nvarchar(max)**）(你可以尝试一下用Code First创建一个新的数据表，其中的string类型字段不用**StringLength**或**MaxLength**进行标识，你会发现，在数据库中自动生成的这个字段的类型就是**nvarchar(max)**)。
+
 
 ```
 public partial class Blog 
@@ -162,7 +163,7 @@ public partial class Blog
 }
 ```
 
-## 4.Reading & Writing Data
+## 4.读写数据
 
 Now that we have a model it’s time to use it to access some data. Implement the **Main** method in **Program.cs** as shown below. This code creates a new instance of our context and then uses it to insert a new **Blog**. Then it uses a LINQ query to retrieve all **Blogs** from the database ordered alphabetically by **Title**.
 
