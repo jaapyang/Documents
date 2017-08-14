@@ -253,13 +253,15 @@ public class BloggingContext : DbContext
 ```
 
 - 当我们尝试使用 ```Add-Migration ...```命令去生成新的数据迁移时，会发现一个错误：**"EntityType 'User' has no key defined, Define the key for this EntityType"**, 即实体模型 'User'没有定义主键，请为实体模型'User'定义主键。 这是因为EF无法主动发现 ```Username```是 ```User```的主键。
-- 这个时候我们就需要给```User```的```Username```属性添加一个```KeyAttribute```的特性，用于告诉EF，我们将具备```KeyAttribute```特性的属性定义为模型的主键,即 ```Username```
+- 这个时候我们就需要给```User```的```Username```属性添加一个```KeyAttribute```的特性，用于告诉EF，我们将具备```KeyAttribute```特性的属性定义为模型的主键,即 ```Username```.
+
+引用命名空间如下：
 
 ```
 using System.ComponentModel.DataAnnotations;
 ```
 
-- Now annotate the Username property to identify that it is the primary key
+- 现在我们用```Key```来标识```Username```为主键
 
 ```
 public class User 
@@ -270,10 +272,12 @@ public class User
 }
 ```
 
-- Use the Add-Migration AddUser command to scaffold a migration to apply these changes to the database
-- Run the Update-Database command to apply the new migration to the database
+- 接下来,用```add-migration AddUser```命令来创建这些更新的迁移文件
+- 执行```Update-Database```命令，将迁移更新到数据库。
 
-The full list of annotations supported by EF is:
+这个时候，我们发现数据库中已经创建好了新的数据表 **Users**
+
+以下是EF提供的数据模型标识特性(Attribute)清单:
 
 + KeyAttribute
 + StringLengthAttribute
