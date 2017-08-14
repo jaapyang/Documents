@@ -227,11 +227,11 @@ namespace CodeFirstNewDatabaseSample.Migrations
 - 在**程序包控制台**输入并执行命令 ```Update-Database```.这个命令会将所有待更新的迁移更新到数据库。因为之前```InitialCreate```的迁移已经更新到数据库，所以这一次更新只会应用我们刚刚生成的```AddUrl``的迁移。
 > Tip: 你可以附加命令参数 ```-Verbose``` 用于查看将要执行的更新的SQL脚本
 	
-## 6. Data Annotations
+## 6. 数据模型标识(对于'**Data** **Annotations**'这个词的翻译我个人认为是数据模型标识，如果有更好的翻译，请帮忙指正，谢谢)
 
-So far we’ve just let EF discover the model using its default conventions, but there are going to be times when our classes don’t follow the conventions and we need to be able to perform further configuration. There are two options for this; we’ll look at Data Annotations in this section and then the fluent API in the next section.
+到目前为止，我们只是依赖EF的默认命名约定来定义模型，但是对于有一些场景我们无法去遵循这个约定，这个时候我们就要进行进一步的配置了。关于这部分的知识，可以在本文中查看数据模型标识的相关Attribute支持，在下一部分中会有详细介绍.
 
-- Let’s add a User class to our model
+- 我们添加一个新的实体模型 ```User```
 
 ```
 public class User 
@@ -241,7 +241,7 @@ public class User
 }
 ```
 
-- We also need to add a set to our derived context
+- 当然，我们相应的也要在DbContext中添加一个User的强类型DbSet<User>
 
 ```
 public class BloggingContext : DbContext 
@@ -252,8 +252,8 @@ public class BloggingContext : DbContext
 }
 ```
 
-- If we tried to add a migration we’d get an error saying “EntityType ‘User’ has no key defined. Define the key for this EntityType.” because EF has no way of knowing that Username should be the primary key for User.
-- We’re going to use Data Annotations now so we need to add a using statement at the top of Program.cs
+- 当我们尝试使用 ```Add-Migration ...```命令去生成新的数据迁移时，会发现一个错误：**"EntityType 'User' has no key defined, Define the key for this EntityType"**, 即实体模型 'User'没有定义主键，请为实体模型'User'定义主键。 这是因为EF无法主动发现 ```Username```是 ```User```的主键。
+- 这个时候我们就需要给```User```的```Username```属性添加一个```KeyAttribute```的特性，用于告诉EF，我们将具备```KeyAttribute```特性的属性定义为模型的主键,即 ```Username```
 
 ```
 using System.ComponentModel.DataAnnotations;
