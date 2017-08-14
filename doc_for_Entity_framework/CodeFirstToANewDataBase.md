@@ -295,13 +295,14 @@ public class User
 
 ## 7. Fluent API
 
-In the previous section we looked at using Data Annotations to supplement or override what was detected by convention. The other way to configure the model is via the Code First fluent API.
+在上一节中我们研究了通过数据模型标识特性来补充或者覆盖默认情况下EF检测到的模型。那么，Fluent API其实还提供了另一种方法来配置模型
 
-Most model configuration can be done using simple data annotations. The fluent API is a more advanced way of specifying model configuration that covers everything that data annotations can do in addition to some more advanced configuration not possible with data annotations. Data annotations and the fluent API can be used together.
+我们知道，大多数模型可通过简单的数据模型标识来完成定义或配置，但Code First提供了一种更先进的试来指定模型配置，即**Fluent API**，除了涵盖数据标识可以实现的所有操作外，还提供了一些数据模型标识所不可能实现的一些更高级配置方式。此外，数据模型标识和**Fluent API**这种高级配置方式是可以一起使用的。
 
-To access the fluent API you override the OnModelCreating method in DbContext. Let’s say we wanted to rename the column that User.DisplayName is stored in to display_name.
+我们可以通过Fluent API提供的支持在DbContext中重写```OnModelCreating```方法。我们一起来看一下，怎么样在更新数据模型时将在**User**实体中定义为 **DisplayName** 的属性在数据库中映射为字段名 **display_name**.
 
-- Override the OnModelCreating method on BloggingContext with the following code
+
+- 在 **BloggingContext**中重写**OnModelCreating**方法，代码如下：
 
 ```
 public class BloggingContext : DbContext 
@@ -319,9 +320,9 @@ public class BloggingContext : DbContext
 }
 ```
 
-- Use the Add-Migration ChangeDisplayName command to scaffold a migration to apply these changes to the database.
-- Run the Update-Database command to apply the new migration to the database.
-	
+- 在 **程序包控制台** 执行命令 ```Add-Migration ChangeDisplayName```，生成对于此变更的新的迁移
+- 执行 ```Update-Database```命令将此迁移更新到数据库
+
 	
 ## Summary
 
