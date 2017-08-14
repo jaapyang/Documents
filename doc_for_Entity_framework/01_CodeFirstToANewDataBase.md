@@ -284,16 +284,16 @@ public class User
 | [KeyAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.keyattribute) |  用于指定实体的唯一标识，即主键 |
 | [StringLengthAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.stringlengthattribute) | 指定字段的最大字符数和最小字符数 |
 | [MaxLengthAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.maxlengthattribute) | 用于指定字段的最大长度 |
-| [ConcurrencyCheckAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.concurrencycheckattribute) |   |
-| [RequiredAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.requiredattribute) |    |
-| [TimestampAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.timestampattribute) |  |
-| [ComplexTypeAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.complextypeattribute) |  |
-| [ColumnAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.columnattribute) |   |
-| [TableAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.tableattribute) |  |
-| [InversePropertyAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.inversepropertyattribute) |   |
-| [ForeignKeyAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.foreignkeyattribute) |   |
-| [DatabaseGeneratedAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.databasegeneratedattribute) |  |
-| [NotMappedAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.notmappedattribute) |   |
+| [ConcurrencyCheckAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.concurrencycheckattribute) | 指定属性参与乐观并发检查。  |
+| [RequiredAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.requiredattribute) | 标记为非空(必填)字段 |
+| [TimestampAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.timestampattribute) | 行版本类型 （也称为序列号） 是保证可在数据库中唯一一个二进制数字。 它不表示的实际时间。 行版本数据不是以可视方式有意义的。 因此，当 TimestampAttribute 属性用于动态数据字段，则将不显示列除非 ScaffoldColumnAttribute 列的属性显式设置为 true。 |
+| [ComplexTypeAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.complextypeattribute) | 表示该类是复杂类型。 复杂类型是实体类型的非标量属性，实体类型允许在实体内组织标量属性。 复杂类型没有键，并且实体框架不能脱离父对象来管理复杂类型。 |
+| [ColumnAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.columnattribute) | 表示属性将映射到的数据库列 |
+| [TableAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.tableattribute) | 指定类将映射到的数据库表。 |
+| [InversePropertyAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.inversepropertyattribute) | 指定表示同一关系的另一端的导航属性的反向属性。  |
+| [ForeignKeyAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.foreignkeyattribute) | 外键标识  |
+| [DatabaseGeneratedAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.databasegeneratedattribute) | 指定数据库生成属性值的方式。一般用于指定标识列的生成方式 |
+| [NotMappedAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.notmappedattribute) | 表示应从数据库映射中排除属性或类。  |
 
 
 
