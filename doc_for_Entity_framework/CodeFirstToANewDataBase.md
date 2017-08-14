@@ -201,7 +201,7 @@ public class Blog
 ```
 
 
--  在**程序包控制台**输入命令 ```Add-Migration AddUrl```,并执行. **Add-Migration** 命令会检查之前所有的迁移与现有实体模型之间的差异，将在从上一次迁移到现在的所有变更应用到本次迁移中(即生成到 yyyyMMdd..._**AddUrl**.cs文件中)。命令(```Add-Migration AddUrl```)中 '**AddUrl**'是命令的参数，即指定迁移的命名为 'AddUrl'.
+-  在**程序包控制台**输入命令 ```Add-Migration AddUrl```,并执行. **Add-Migration** 命令会检查之前所有的迁移与现有实体模型之间的差异，将在从上一次迁移到现在的所有变更应用到本次迁移中(即生成到 yyyyMMdd..._**AddUrl**.cs文件中)。命令(```Add-Migration AddUrl```)中 '**AddUrl**'是命令的参数，即指定迁移的命名为 'AddUrl'.生成的代码如下:
 
 ```
 namespace CodeFirstNewDatabaseSample.Migrations 
@@ -224,7 +224,8 @@ namespace CodeFirstNewDatabaseSample.Migrations
 }
 ```
 
-- Run the Update-Database command in Package Manager Console. This command will apply any pending migrations to the database. Our InitialCreate migration has already been applied so migrations will just apply our new AddUrl migration. Tip: You can use the –Verbose switch when calling Update-Database to see the SQL that is being executed against the database.
+- 在**程序包控制台**输入并执行命令 ```Update-Database```.这个命令会将所有待更新的迁移更新到数据库。因为之前```InitialCreate```的迁移已经更新到数据库，所以这一次更新只会应用我们刚刚生成的```AddUrl``的迁移。
+> Tip: 你可以附加命令参数 ```-Verbose``` 用于查看将要执行的更新的SQL脚本
 	
 ## 6. Data Annotations
 
