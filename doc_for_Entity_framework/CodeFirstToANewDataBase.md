@@ -201,7 +201,7 @@ public class Blog
 ```
 
 
-	- Run the Add-Migration AddUrl command in Package Manager Console. The Add-Migration command checks for changes since your last migration and scaffolds a new migration with any changes that are found. We can give migrations a name; in this case we are calling the migration ‘AddUrl’. The scaffolded code is saying that we need to add a Url column, that can hold string data, to the dbo.Blogs table. If needed, we could edit the scaffolded code but that’s not required in this case.
+	-  在**程序包控制台**输入命令 ```Add-Migration AddUrl```,并执行. **Add-Migration** 命令会检查之前所有的迁移与现有实体模型之间的差异，将在从上一次迁移到现在的所有变更应用到本次迁移中(即生成到 yyyyMMdd..._**AddUrl**.cs文件中)。命令(```Add-Migration AddUrl```)中 '**AddUrl**'是命令的参数，即指定迁移的命名为 'AddUrl'.
 
 ```
 namespace CodeFirstNewDatabaseSample.Migrations 
