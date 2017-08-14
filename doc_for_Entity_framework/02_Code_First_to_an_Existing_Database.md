@@ -4,6 +4,10 @@
 
 > This video and step-by-step walkthrough provide an introduction to Code First development targeting an existing database. Code First allows you to define your model using C# or VB.Net classes. Optionally additional configuration can be performed using attributes on your classes and properties or by using a fluent API.
 
+**目录**
+> [Pre-Requisites](#Pre-Requisites)
+> [1-Create-an-Existing-Database](#1-Create-an-Existing-Database)
+
 ## Pre-Requisites
 
 You will need to have **Visual Studio 2012** or **Visual Studio 2013** installed to complete this walkthrough.
