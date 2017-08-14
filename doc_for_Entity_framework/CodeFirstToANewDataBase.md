@@ -324,7 +324,10 @@ public class BloggingContext : DbContext
 - 执行 ```Update-Database```命令将此迁移更新到数据库
 
 	
-## Summary
+## 小结
 
-In this walkthrough we looked at Code First development using a new database. We defined a model using classes then used that model to create a database and store and retrieve data. Once the database was created we used Code First Migrations to change the schema as our model evolved. We also saw how to configure a model using Data Annotations and the Fluent API.
+- 使用Code First 定义一个新的数据模型
+- 使用DbContext检索或存储数据
+- 将模型的变更通过数据迁移命令(Migrations)更新到数据库
+- 使用Fluent API配置模型
 	
