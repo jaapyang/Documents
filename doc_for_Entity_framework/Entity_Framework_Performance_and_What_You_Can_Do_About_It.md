@@ -4,22 +4,22 @@
 
 > 众所周知， Entity Framework是一个让人非常满意的基于数据库应用程序的快速开发框架。但Entity Framework在性能方面也一直让人有些诟病，那么，本文就如何进行性能优化与如何规避一些影响性能的 **坑** 进行介绍。
 
-Compared to writing your own SQL to access data, you can become miraculously more productive by using Entity Framework (EF). Unfortunately, several traps that are easy to fall into have given it a reputation for performing poorly; but it doesn’t have to be this way! The performance of Entity Framework may once have been inherently poor but isn’t any more if you know where the landmines are. In this article we’ll look at where these ‘traps’ are hiding, examining how they can be spotted and what you can do about them.
+相对于自己写SQL语句进行数据访问来说，使用EF进行数据访问会有更高的开发效率。但悲催的是，EF有些影响性能的 **坑** 让它备受诟病；但实际上这些是可以规避的。也许EF
+与编写自己的SQL来访问数据相比，通过使用实体框架（EF），您可以变得奇迹般地更高效。 不幸的是，容易陷入的几个陷阱给了它表现不佳的声誉; 但它不一定是这样的！ 实体框架的表现可能曾经本来就很差，但是如果你知道地雷在哪里，那就不再是这样了。 在这篇文章中，我们将看看这些“陷阱”在哪里隐藏，检查它们如何被发现以及你可以做些什么。
 
-We’ll use examples from a simplified school management system. There’s a database with two tables for Schools and their Pupils, and a WinForms app using an EF code-first model of this database to fetch data in a variety of inefficient ways.
+我们将通过Code first的方式，实现一个简单的学校管理系统的案例。它有一个数据库，两个数据表，分别为学校和在校学生信息表，以Winform窗体程序的方式进行呈现。在此过程中，我们将采用一些低效的数据访问方式，并尝试进行优化。
 
-To play along at home, you can grab the code for most of these examples from
- https://github.com/bcemmett/EntityFrameworkSchoolSystem – setup instructions are included in the readme. 
+你可以从[https://github.com/bcemmett/EntityFrameworkSchoolSystem](https://github.com/bcemmett/EntityFrameworkSchoolSystem) 获取到这个案例的代码，相关的设置说明请参考 Readme.md
  
- ## Database access 
-By far the biggest performance issues you’re likely to encounter are of course around accessing the database. These few are the most common.
+ ## 数据访问 
+到目前为止，你可能遇到最大的性能问题是访问数据库，以下是最常见的几个问题：
 
 ### Being too greedy with Rows 
 *Sample application: button 1*
 
-At its heart, Entity Framework is a way of exposing .NET objects without actually knowing their values, but then fetching / updating those values from the database behind the scenes when you need them. It’s important to be aware of when EF is going to hit the database – a process called materialization.
+在它的核心，EF是以一种暴露.NET对象属性而不赋值的方式来提供一种由数据表结构到.NET的映射，EF只会在程序需要时，才从数据库中获取或更新这些值到映射的对象实体中。所以，重要的是要知道什么时候EF会访问数据 ———— 实现由数据到实体的转换
 
-Let’s say we have a context db with an entity db.Schools. We might choose to write something like:
+假设有一个连接到 ```db.Schools``` 的DbContext，我们可能会以下面代码中的方式执行数据访问：
 ```
 string city =  "New York";
 List<School> schools = db.Schools.ToList();
