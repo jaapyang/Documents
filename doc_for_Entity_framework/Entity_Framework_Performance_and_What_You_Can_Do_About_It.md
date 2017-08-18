@@ -38,7 +38,7 @@ List<School>  newYorkSchools = db.Schools.Where(s => s.City == city).ToList();
 
 ```
 IQueryable<School> schools = db.Schools;
-		 List<School> newYorkSchools = schools.Where(s => s.City == city).ToList();
+List<School> newYorkSchools = schools.Where(s => s.City == city).ToList();
 ```
 
 
