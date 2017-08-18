@@ -41,5 +41,26 @@ IQueryable<School> schools = db.Schools;
 List<School> newYorkSchools = schools.Where(s => s.City == city).ToList();
 ```
 
+### "N+1查询"问题：最小化到数据库的行程
+
+案例: *button 2*
+
+这是一个对象实体化时另一个常见的**坑**.
+
+在我们的数据库中，```Pupil```数据表中有一个对```School```表的外键引用（```SchoolId```）.而在EF实体模型对象结构中，它表现为在```Schools```对象中的一个```virtual```修饰的属性```Puplils```（我们姑且称之为"虚属性"）.
+
+我可以通过以下代码将每个```School```的```Pupils```输出：
+```
+	string city =  "New York";
+	List<School> schools = db.Schools.Where(s => s.City == city).ToList();
+	var sb =  new  StringBuilder();
+	foreach(var school  in schools)
+	{
+	    sb.Append(school.Name);
+	    sb.Append(": ");
+	    sb.Append(school.Pupils.Count);
+	    sb.Append(Environment.NewLine);
+	}
+```
 
 
