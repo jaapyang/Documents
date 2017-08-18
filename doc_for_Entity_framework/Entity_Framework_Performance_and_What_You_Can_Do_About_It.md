@@ -26,6 +26,7 @@ List<School> schools = db.Schools.ToList();
 List<School> newYorkSchools = schools.Where(s => s.City == city).ToList();
 ```
 在第二行，在我们执行 ```.ToList()```的时候,EF就会去访问数据库，将```schools```表中所有行从数据库读取到实体对象集合```List<School> schools```中,以便应用程序在后续代码可以访问这些对象```schools```的实际值，而不仅仅是从以上代码中知道将会以什么方式从数据库中找到需要的值.它将访问**schools** 中的每一行，然后填充到**List<School> schools**集合中。我们可以在[ANTS Performance Profiler](http://www.red-gate.com/products/dotnet-development/ants-performance-profiler/index?utm_source=simpletalk&utm_medium=publink&utm_campaign=antsperformanceprofiler&utm_content=entityframeworkperformance)看到EF生成的查询语句如下 :
+
 ![](https://www.red-gate.com/simple-talk/wp-content/uploads/imported/2325-1-6b543c4e-c10f-45f3-ae1b-443ff17d8b01.png)
 
 
