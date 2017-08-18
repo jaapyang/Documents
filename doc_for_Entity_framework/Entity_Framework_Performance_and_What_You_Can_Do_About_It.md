@@ -63,4 +63,10 @@ List<School> newYorkSchools = schools.Where(s => s.City == city).ToList();
 	}
 ```
 
+我们可以在 ANTS中观察到正在运行的代码到底做了什么,我们发现有一个查询请求在查询一个在**'New York'**的**Schools**列表，但同时，也有另一个获取**Pupil**信息的查询执行了500次。
+
+![](https://www.red-gate.com/simple-talk/wp-content/uploads/imported/2325-1-2fbc0f9f-774f-441e-a91c-acdd4a812ba7.png)
+
+
+
 
