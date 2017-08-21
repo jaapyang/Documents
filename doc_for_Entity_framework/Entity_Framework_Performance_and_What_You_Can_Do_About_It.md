@@ -67,6 +67,11 @@ List<School> newYorkSchools = schools.Where(s => s.City == city).ToList();
 
 ![](https://www.red-gate.com/simple-talk/wp-content/uploads/imported/2325-1-2fbc0f9f-774f-441e-a91c-acdd4a812ba7.png)
 
-发生这种情况是因为在默认情况下，EF使用一种叫做[**Lazy Loading**]
+发生这种情况是因为在默认情况下，EF使用一种叫做[**Lazy Loading**],当第一次查询**Schoo**对象的时候，它不会获取与**School**关系的**Puppies**的数据。在后面的过程中，当你尝试去读取**School**对应的**Pupils**的数据时，程序就只能从数据库查询了。在大多数时候，这是一种很好的解决方案，否则你访问**School**对象时，会同时连带查询**Pupils**的数据，无论你是否需要**Pupils**的数据。但是在上面这个案例中，EF首先要查询所有符合条件的**SChool**，然后再查询与这些**School**关联的**Pupils**的数据。
+
+这就是取名“N + 1”的原因，其中N是原始查询返回的对象数。 如果你知道你肯定会想要学生数据，那么你应该采用不同的做法，特别是如果你想要大量的School对象。 如果应用程序和数据库服务器之间存在高延迟，这一点尤为重要。
+
+
+
 
 
