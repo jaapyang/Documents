@@ -67,6 +67,6 @@ List<School> newYorkSchools = schools.Where(s => s.City == city).ToList();
 
 ![](https://www.red-gate.com/simple-talk/wp-content/uploads/imported/2325-1-2fbc0f9f-774f-441e-a91c-acdd4a812ba7.png)
 
-
+发生这种情况是因为在默认情况下，EF使用一种叫做[**Lazy Loading**]
 
 
