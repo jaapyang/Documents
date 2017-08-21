@@ -104,4 +104,60 @@ List<School> popularSchools = schools
     .ToList();
 ```
 
+但实际不我们并不需要知道具体每个学校有多少学生，所以，我们有更高效的办法：
+
+```
+List<School> schools = db.Schools
+	    .Where(s => s.City == city
+	        && s.Pupils.Count > 100)
+	    .ToList();
+```
+
+现在我将介绍通过选择我们需要的特殊列来进一步提高性能。
+
+### Being too grady with Columns
+
+### Missing indexes 
+
+### Overly-generic queries 
+
+### Bloating the plan cache 
+
+### Inserting data 
+
+## Extra work in the client 
+
+### Detecting Changes 
+
+### Change tracking 
+
+
+## Startup Performance 
+
+### Precompiled views 
+
+### Giant contexts 
+
+### NGen everything 
+
+### Unnecessary queries 
+
+
+## Other tips 
+
+### Disposing 
+
+### Multiple result sets 
+
+### Caching 
+
+### Consider Using Async 
+
+### Upgrade 
+
+### Test with Realistic Data 
+
+### Occasionally, EF isn’t the answer 
+
+## Summary 
 
