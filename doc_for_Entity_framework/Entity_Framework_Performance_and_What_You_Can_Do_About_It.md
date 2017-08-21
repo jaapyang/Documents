@@ -71,7 +71,37 @@ List<School> newYorkSchools = schools.Where(s => s.City == city).ToList();
 
 这就是取名“N + 1”的原因，其中N是原始查询返回的对象数。 如果你知道你肯定会想要学生数据，那么你应该采用不同的做法，特别是如果你想要大量的School对象。 如果应用程序和数据库服务器之间存在高延迟，这一点尤为重要。
 
+有几种不同的方法可以解决这个问题。 第一个是使用贪婪加载（Eager Loading）数据访问策略，当您使用Include（）语句时，它将在单个查询中获取指定的相关数据。这样就会在一个查询中把**Pupils**数据加载到内存中，所以EF不需要再次访问数据库。 为了做到这一点，你的第一行将是：
 
+```
+List<School> schools = db.Schools.Where(s => s.City == city)
+	    .Include(x => x.Pupils) //贪婪加载
+	    .ToList();
+```
 
+这种方法相对之前是一个改进，至少我们没有执行额外的500次查询，但这样还是有个缺点，那就是有时候我们加载这些**Pupils**数据只是为了看看有多少个**Pupils**，但不需要这些**Pupils**的详细数据。例如，如果我们想要查询在**New York**在校生超过100(More than 100 Pupils)的**School**(但并不关心究竟有多少个学生)，那么常见的一种错误写法就是：
+
+```
+List<School> schools = db.Schools
+	    .Where(s => s.City == city)
+	    .ToList();
+	 
+	List<School> popularSchools = schools
+	    .Where(s => s.Pupils.Count > 100)
+	    .ToList();
+```
+
+我们同样只要使用之前提过的办法解决这个问题，即添加一个**Include()**声明,像下面这段代码一样：
+
+```
+List<School> schools = db.Schools
+	    .Where(s => s.City == city)
+	    .Include(x => x.Pupils)
+	    .ToList();
+	 
+List<School> popularSchools = schools
+    .Where(s => s.Pupils.Count > 100)
+    .ToList();
+```
 
 
