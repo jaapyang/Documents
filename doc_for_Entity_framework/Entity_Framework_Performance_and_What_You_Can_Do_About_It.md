@@ -117,6 +117,26 @@ List<School> schools = db.Schools
 
 ### Being too grady with Columns
 
+案例程序:Button 3
+
+如果我们要想获取某些学校中每个学生的name，我们可以这样做：
+```
+int schoolId = 1;
+
+List<Pupil> pupils = db.Pupils
+ .Where(p => p.SchoolId == schoolId)
+ .ToList();
+
+foreach(var pupil  in pupils)
+{
+ textBox_Output.Text += pupil.FirstName +  " " + pupil.LastName;
+ textBox_Output.Text +=  Environment.NewLine;
+}
+```
+
+我们可以在 ANTS 看到我们正在执行的查询，我们会发现在除了我们需要的FirstName和LastName以外，同时还检索出很多其它我们不需要的数据。
+![](https://www.red-gate.com/simple-talk/wp-content/uploads/imported/2325-1-749f6160-0d43-4f86-84ee-f68b31055a63.png)
+
 ### Missing indexes 
 
 ### Overly-generic queries 
