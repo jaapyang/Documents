@@ -138,6 +138,10 @@ foreach(var pupil  in pupils)
 
 ![](https://www.red-gate.com/simple-talk/wp-content/uploads/imported/2325-1-749f6160-0d43-4f86-84ee-f68b31055a63.png)
 
+这里的问题是，在运行查询时，EF不知道你可能想要读取什么属性，所以它默认的选择是检索一个实体的所有属性，即表中的每一列。 这会导致两个问题:
+
+- 我们获取了很多我们需求之外的数据。这样会影响到Sql Server I/O 和 网络性能，并占用更多的内存资源。在这里的例子中，因为虽然我们只想要小的FirstName和LastName字符串，但是Pupils表包含一个大的Picture列，它被不必要地检索，并且从未使用过。
+
 ### Missing indexes 
 
 ### Overly-generic queries 
