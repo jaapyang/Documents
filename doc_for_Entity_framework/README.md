@@ -6,3 +6,4 @@
 
 3. **Entity Framework Fluent API**  [*原文链接*](https://msdn.microsoft.com/en-us/library/jj591617(v=vs.113).aspx)
 4. [**Entity framework性能优化指南**](Entity_Framework_Performance_and_What_You_Can_Do_About_It.md )    [原文链接](https://www.red-gate.com/simple-talk/dotnet/net-tools/entity-framework-performance-and-what-you-can-do-about-it/)
+
