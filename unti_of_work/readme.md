@@ -7,3 +7,4 @@
 - [ADO.NET入门教程（五） 细说数据库连接池](http://www.cnblogs.com/liuhaorain/archive/2012/02/19/2353110.html)
 - [ABP理论学习之工作单元(Unit of Work)](http://www.cnblogs.com/farb/p/ABPUnitofWork.html)
 - [UnitOfWork以及其在ABP中的应用](http://www.cnblogs.com/huaizuo/p/4838680.html)
+- [企业模式之Unit Of Work模式](http://www.cnblogs.com/zxj159/p/3505457.html)
