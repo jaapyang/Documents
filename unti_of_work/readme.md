@@ -9,3 +9,4 @@
 - [UnitOfWork以及其在ABP中的应用](http://www.cnblogs.com/huaizuo/p/4838680.html)
 - [企业模式之Unit Of Work模式](http://www.cnblogs.com/zxj159/p/3505457.html)
 - [Byteart Retail V2 - 基于Entity Framework Code First的领域驱动设计实践案例 ](http://www.cnblogs.com/daxnet/archive/2012/06/20/2555938.html)
+- [EntityFramework之领域驱动设计实践【后续篇】：基于EF 4.3.1 Code First的领域驱动设计实践案例](http://www.cnblogs.com/daxnet/archive/2012/04/16/2452660.html)
