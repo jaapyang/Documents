@@ -11,3 +11,4 @@
 - [Byteart Retail V2 - 基于Entity Framework Code First的领域驱动设计实践案例 ](http://www.cnblogs.com/daxnet/archive/2012/06/20/2555938.html)
 - [EntityFramework之领域驱动设计实践【后续篇】：基于EF 4.3.1 Code First的领域驱动设计实践案例](http://www.cnblogs.com/daxnet/archive/2012/04/16/2452660.html)
 - [ABP使用及框架解析系列 - [Unit of Work part.2-框架实现]](http://www.cnblogs.com/ancupofcoffee/p/4908554.html)
+- [DDD示例框架](https://github.com/yuezhongxin/DDD.Sample)
